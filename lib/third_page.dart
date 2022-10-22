@@ -16,7 +16,7 @@ class ThirdPage extends StatelessWidget {
         title: const Text('Test APP')
       ),
       body: Container(
-        color:Colors.pink.shade100,
+        color:Colors.white,
         width: double.infinity,
         height: double.infinity,
         alignment: Alignment.center,
@@ -78,7 +78,14 @@ class ThirdPage extends StatelessWidget {
                 //insert文を実行(会員登録の情報入力)
                 //会員情報テーブルとユーザー認証テーブル
               },
-                  child: const Text('登録実行')),
+                  child: const Center(
+                      child: const Text('Regist',
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 4.0,
+                        ),))),
             )
           ,]),
         ),

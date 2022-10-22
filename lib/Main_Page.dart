@@ -9,11 +9,11 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.pink,
+        backgroundColor: Colors.black,
         title: Text('マイページ'),
       ),
       body: Container(
-        color:Colors.pink.shade100,
+        color:Colors.white,
         width: double.infinity,
         height: double.infinity,
         alignment: Alignment.center,
@@ -25,10 +25,10 @@ class MainPage extends StatelessWidget {
           for(int i = 0; i < 8; i++)...{
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton(
+              child: OutlinedButton(
               style: ElevatedButton.styleFrom(
               elevation: 10,
-              shadowColor: Colors.red
+              shadowColor: Colors.black
               ),
                 onPressed: (){
               // //ボタン押した時の処理(登録完了画面 + insert文の実行)
@@ -93,7 +93,14 @@ class MainPage extends StatelessWidget {
               //   MaterialPageRoute(builder: (context) => FourPage(),
               //       fullscreenDialog: true),
               // );
-              },child: Text(list[i]),
+              },child: Center(
+                  child: Text(list[i],
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 4.0,
+                    ),)),
             ),
           )
         }

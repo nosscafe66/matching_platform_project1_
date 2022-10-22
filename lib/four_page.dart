@@ -10,7 +10,7 @@ class FourPage extends StatelessWidget {
           title: const Text('Test APP')
       ),
       body: Container(
-        color:Colors.pink.shade100,
+        color:Colors.white,
         width: double.infinity,
         height: double.infinity,
         alignment: Alignment.center,

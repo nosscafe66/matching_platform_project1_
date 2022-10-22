@@ -26,19 +26,27 @@ class SecondPage extends StatelessWidget {
         title: const Text('Test APP'),
       ),
       body: Container(
-        color:Colors.pink.shade100,
+        color:Colors.white,
         width: double.infinity,
         height: double.infinity,
         alignment: Alignment.center,
         child: Column(children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: AnimatedTextKit(
-              animatedTexts: [
-                TypewriterAnimatedText('歳の差カップルになりたい人\nなっている人のための\n総合プラットフォーム'),
-                TypewriterAnimatedText('今後もたくさん更新していきます。'),
-                TypewriterAnimatedText('会員登録どうぞよろしくお願いします。'),
-              ],
+          Center(
+            child: Container(
+              width: 400,
+              height: 60,
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: AnimatedTextKit(
+                    animatedTexts: [
+                      TypewriterAnimatedText('歳の差カップルになりたい人\nなっている人のための\n総合プラットフォーム'),
+                      TypewriterAnimatedText('今後もたくさん更新していきます。'),
+                      TypewriterAnimatedText('会員登録どうぞよろしくお願いします。'),
+                    ],
+                  ),
+                ),
+              ),
             ),
           ),
           //画像を表示
@@ -116,7 +124,14 @@ class SecondPage extends StatelessWidget {
                   );
                 };
               },
-                  child: const Text('新規登録'))
+                  child: Center(
+                      child: const Text('Register Check',
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 4.0,
+                      ),)))
             ]),
           ),
         ]),
@@ -124,24 +139,5 @@ class SecondPage extends StatelessWidget {
     );
   }
 }
-
-// class DatabaseConnection {
-//
-//   setDatabase() async {
-//     var directory = await getApplicationDocumentsDirectory();
-//     var path = join(directory.path, 'gaple.db');
-//     await deleteDatabase(path);
-//
-//     var _onConfigure;
-//     var database = await openDatabase(path,
-//         version: 1, onCreate: _onCreatingDatabase, onConfigure: _onConfigure);
-//
-//     return database;
-//   }
-//
-//   _onCreatingDatabase(Database database, int version) async {
-//     await database.execute('CREATE TABLE Test (id INTEGER PRIMARY KEY, name TEXT, value INTEGER, num REAL)');
-//   }
-// }
 
 

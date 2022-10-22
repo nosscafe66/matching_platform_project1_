@@ -20,7 +20,7 @@ class LoginPage extends StatelessWidget {
         title: const Text('Test APP'),
       ),
       body: Container(
-        color:Colors.pink.shade100,
+        color:Colors.white,
         width: double.infinity,
         height: double.infinity,
         alignment: Alignment.center,
@@ -28,10 +28,20 @@ class LoginPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16),
             child: Container(
-              color:Colors.black54,
+              //color:Colors.black54,
               width:400,
-              height:40,
-              child: Center(child: const Text('マイページへログイン'))
+              height:10,
+              //child: Center(child: const Text('マイページへログイン')),
+              decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(1),
+                      spreadRadius: 1,
+                      blurRadius: 3,
+                      offset: Offset(1,1),
+                    )
+                  ]
+              ),
             ),
           ),Padding(
             padding: const EdgeInsets.all(16),
@@ -53,20 +63,34 @@ class LoginPage extends StatelessWidget {
                 obscureText: true, // 追加
                 autovalidateMode: AutovalidateMode.onUserInteraction,
               ),
-              ElevatedButton(onPressed: (){
-                //登録確認画面へ遷移
-                if(userName.isNotEmpty | passWord.isNotEmpty){
-                  //変数が空以外の時に画面遷移を行う
-                  //メインページに飛ばす処理及びデータベースとの情報照合確認処理を追加する。
-                  //ハッシュ化処理も実装する
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MainPage(),
-                    ),
-                  );
-                };
-              },
-                  child: const Text('ログイン'))
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Container(
+                  width: 170,
+                  height: 50,
+                  child: OutlinedButton(onPressed: (){
+                    //登録確認画面へ遷移
+                    if(userName.isNotEmpty | passWord.isNotEmpty){
+                      //変数が空以外の時に画面遷移を行う
+                      //メインページに飛ばす処理及びデータベースとの情報照合確認処理を追加する。
+                      //ハッシュ化処理も実装する
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => MainPage(),
+                        ),
+                      );
+                    };
+                  },
+                      child: Center(
+                          child: Text('Login',
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 4.0,
+                            ),))),
+                ),
+              )
             ]),
           ),
         ]),
