@@ -36,12 +36,12 @@ dependencies:
 
   fluttery_dart2: ^0.0.9
   path:
-  path_drawing: ^0.5.1
+  path_drawing: ^1.0.1
   cupertino_icons: ^1.0.1
   flutter_tindercard: ^0.2.0
   line_icons:
   flutter_svg:
-  flutter_custom_clippers: ^1.1.2
+  flutter_custom_clippers: ^2.0.0
 
 
   # The following adds the Cupertino Icons font to your application.

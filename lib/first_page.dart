@@ -6,6 +6,9 @@ class FirstPage extends StatelessWidget {
   //変数初期化処理
   String nameText = '';
   var Buttonlist = ['SignUp','Login'];
+  var Textlist = ['T','O','S'];
+  var Textlist2 = ['H','I','N'];
+  var Textlist3 = ['O','S','A'];
   @override
   Widget build(BuildContext context) {
 
@@ -111,7 +114,14 @@ class FirstPage extends StatelessWidget {
                               Container(
                                 width: 100,
                                 height: 90,
-                                child: Text('${j + i}'),
+                                child: Center(
+                                    child: Text('${Textlist[j]}',
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        letterSpacing: 4.0,
+                                      ),)),
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20),
                                     boxShadow: [
