@@ -7,6 +7,7 @@ import 'package:path_provider/path_provider.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:matching_platform_project1/alert_file.dart';
+
 //SignUpページ
 class SecondPage extends StatelessWidget {
   String userName = '';
@@ -19,68 +20,65 @@ class SecondPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: const Text('Test APP'),
+        title: const Text('Gaple'),
       ),
       body: Container(
-        color:Colors.white,
+        color: Colors.white,
         width: double.infinity,
         height: double.infinity,
         alignment: Alignment.center,
         child: Column(children: [
+          //画像を表示
           Center(
-            child: Container(
-              width: 400,
-              height: 60,
-              child: Center(
-                child: Padding(
+            child: Stack(
+              children: <Widget>[
+                Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: AnimatedTextKit(
-                    animatedTexts: [
-                      TypewriterAnimatedText('歳の差カップルになりたい人\nなっている人のための\n総合プラットフォーム'),
-                      TypewriterAnimatedText('今後もたくさん更新していきます。'),
-                      TypewriterAnimatedText('会員登録どうぞよろしくお願いします。'),
-                    ],
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: 400,
+                    height: 420,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        boxShadow: [BoxShadow(color: Colors.pinkAccent)]),
                   ),
                 ),
-              ),
-            ),
-          ),
-          //画像を表示
-          Container(
-            width: 400,
-            height: 400,
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Image.asset(
-                'assets/images/feet3.jpg',
-                fit: BoxFit.contain,
-                //画像表示エラー処理
-                errorBuilder: (c, o, s) {
-                  return const Icon(
-                    Icons.error,
-                    color: Colors.red,
-                  );
-                },
-              ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 70),
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: 300,
+                    height: 100,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border(),
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(50),
+                          bottomRight: Radius.circular(50),
+                        ),
+                        boxShadow: [BoxShadow(color: Colors.blueAccent)]),
+                  ),
+                )
+              ],
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(16),
             child: Container(
-                color:Colors.black54,
-                width:400,
-                height:10,
-                //child: Center(child: const Text(''))
+              //color: Colors.black54,
+              width: 400,
+              height: 10,
+              //child: Center(child: const Text(''))
             ),
-          ),Padding(
+          ),
+          Padding(
             padding: const EdgeInsets.all(16),
             child: Column(children: [
               TextFormField(
-                onChanged: (username){
+                onChanged: (username) {
                   //ユーザー名の入力
                   userName = username;
                 },
@@ -88,15 +86,16 @@ class SecondPage extends StatelessWidget {
                 autovalidateMode: AutovalidateMode.onUserInteraction,
               ),
               TextFormField(
-                onChanged: (mailaddress){
+                onChanged: (mailaddress) {
                   //メールアドレスの入力
                   mailAddress = mailaddress;
                 },
-                decoration: const InputDecoration(hintText: "Input Mailaddress"),
+                decoration:
+                    const InputDecoration(hintText: "Input Mailaddress"),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
               ),
               TextFormField(
-                onChanged: (password){
+                onChanged: (password) {
                   //パスワードの入力
                   passWord = password;
                 },
@@ -105,33 +104,41 @@ class SecondPage extends StatelessWidget {
                 autovalidateMode: AutovalidateMode.onUserInteraction,
               ),
               TextFormField(
-                onChanged: (sex){
+                onChanged: (sex) {
                   //性別の入力
                   Sex = sex;
                 },
                 decoration: const InputDecoration(hintText: "Input Sex"),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-
               ),
-              OutlinedButton(onPressed: (){
-                //登録確認画面へ遷移
-                if(userName.isNotEmpty | mailAddress.isNotEmpty | passWord.isNotEmpty | Sex.isNotEmpty){
-                  //変数が空以外の時に画面遷移を行う
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ThirdPage(userName,mailAddress,passWord,Sex),
-                        fullscreenDialog: true),
-                  );
-                };
-              },
+              OutlinedButton(
+                  onPressed: () {
+                    //登録確認画面へ遷移
+                    if (userName.isNotEmpty |
+                        mailAddress.isNotEmpty |
+                        passWord.isNotEmpty |
+                        Sex.isNotEmpty) {
+                      //変数が空以外の時に画面遷移を行う
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                ThirdPage(userName, mailAddress, passWord, Sex),
+                            fullscreenDialog: true),
+                      );
+                    }
+                    ;
+                  },
                   child: Center(
-                      child: const Text('Register Check',
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 4.0,
-                      ),)))
+                      child: const Text(
+                    'Register Check',
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 4.0,
+                    ),
+                  )))
             ]),
           ),
         ]),
@@ -139,5 +146,3 @@ class SecondPage extends StatelessWidget {
     );
   }
 }
-
-

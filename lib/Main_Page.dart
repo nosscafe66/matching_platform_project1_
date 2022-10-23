@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:matching_platform_project1/pages/root_app.dart';
 import 'package:matching_platform_project1/profile_card_list.dart';
+import 'package:matching_platform_project1/gaple_chatroom.dart';
 //メインページ(リスト)
 //参考URL：https://4qualia.co.jp/technology/solution_business/20210816133245.html
 class MainPage extends StatelessWidget {
@@ -26,8 +27,8 @@ class MainPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: OutlinedButton(
-              style: ElevatedButton.styleFrom(
-              elevation: 10,
+              style: OutlinedButton.styleFrom(
+              //elevation: 10,
               shadowColor: Colors.black
               ),
                 onPressed: (){
@@ -39,11 +40,13 @@ class MainPage extends StatelessWidget {
                         //fullscreenDialog: true),
                     ));
                 }
+                //ここにいったんチャット昨日を追加する。
                 else if(list[i] == 'マッチングした人'){
                   Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => RootApp(),
+                      MaterialPageRoute(builder: (context) => ChatRoom(),
                         //fullscreenDialog: true),
+                        ///Users/yuto/StudioProjects/matching_platform_project1/lib/gaple_chatroom.dart
                       ));
                 }
                 else if(list[i] == 'お気にり'){
