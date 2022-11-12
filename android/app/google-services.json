@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "531035032309",
+    "project_id": "gaple-pro",
+    "storage_bucket": "gaple-pro.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:531035032309:android:2ea11ea32ed28edd80d3bc",
+        "android_client_info": {
+          "package_name": "com.example.matching_platform_project1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "531035032309-1rt8jippdo5447fc9icp61cchgksvb9b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJ_EkipIqv1ckkqe6VzR_3_EAiq5bZw80"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "531035032309-1rt8jippdo5447fc9icp61cchgksvb9b.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "531035032309-7tlle42019dvi3r1b5qcfki27lkjlk89.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.matchingPlatformProject1"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

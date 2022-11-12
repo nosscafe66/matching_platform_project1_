@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:matching_platform_project1/four_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 //登録確認ページ
 class ThirdPage extends StatelessWidget {
+  //会員登録時時に必要な要素一覧
   const ThirdPage(this.userName,this.mailAddress,this.passWord,this.Sex);
   final userName;
   final mailAddress;

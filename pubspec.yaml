@@ -48,6 +48,11 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   animated_text_kit: ^4.2.2
   flutter_chat_ui: ^1.6.5
+  firebase_core: ^2.1.0
+  cloud_firestore: ^4.0.4
+  firebase_auth: ^4.1.1
+  ncmb: ^2.6.6
+  provider: ^6.0.4
 
 dev_dependencies:
   flutter_test:

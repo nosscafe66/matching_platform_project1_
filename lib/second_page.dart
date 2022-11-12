@@ -6,9 +6,11 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:async';
 import 'dart:io';
+import 'package:provider/provider.dart';
 import 'package:matching_platform_project1/alert_file.dart';
+import 'package:matching_platform_project1/main_model.dart';
 
-//SignUpページ
+//SignUpページ(画面のウィジェット部分)
 class SecondPage extends StatelessWidget {
   String userName = '';
   String mailAddress = '';
@@ -20,7 +22,10 @@ class SecondPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return ChangeNotifierProvider<SignUpModel>(
+    create: (context) => SignUpModel(),
+    child: Consumer<SignUpModel>( 
+      builder: (context, model, child) => Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: const Text('Gaple'),
@@ -43,24 +48,49 @@ class SecondPage extends StatelessWidget {
                     height: 420,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
-                        boxShadow: [BoxShadow(color: Colors.pinkAccent)]),
+                        boxShadow: [
+                          BoxShadow(color: Colors.pinkAccent.shade700)
+                        ]),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 70),
-                  child: Container(
-                    alignment: Alignment.center,
-                    width: 300,
-                    height: 100,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border(),
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(50),
-                          bottomRight: Radius.circular(50),
+                Column(
+                  children: [
+                    for (int i = 0; i < 4; i++) ...{
+                      Padding(
+                        padding: const EdgeInsets.only(top: 70),
+                        child: Container(
+                          alignment: Alignment.center,
+                          width: 300,
+                          height: 30,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              border: Border(),
+                              borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(50),
+                                bottomRight: Radius.circular(50),
+                              ),
+                              boxShadow: [
+                                BoxShadow(color: Colors.blueAccent.shade400)
+                              ]),
+                          child: Container(
+                            alignment: Alignment.center,
+                            width: 300,
+                            height: 15,
+                            decoration: BoxDecoration(
+                                color: Colors.black,
+                                border: Border(),
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(50),
+                                  bottomRight: Radius.circular(50),
+                                ),
+                                boxShadow: [
+                                  BoxShadow(color: Colors.blueAccent.shade400)
+                                ]),
+                          ),
                         ),
-                        boxShadow: [BoxShadow(color: Colors.blueAccent)]),
-                  ),
+                      ),
+                    },
+                  ],
                 )
               ],
             ),
@@ -143,6 +173,6 @@ class SecondPage extends StatelessWidget {
           ),
         ]),
       ),
-    );
-  }
+    )),
+  );}
 }

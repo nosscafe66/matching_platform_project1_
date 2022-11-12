@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>531035032309-7tlle42019dvi3r1b5qcfki27lkjlk89.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.531035032309-7tlle42019dvi3r1b5qcfki27lkjlk89</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBB5h3ewouL5pjUO96hy3C4uiy0BJFMqc0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>531035032309</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.matchingPlatformProject1</string>
+	<key>PROJECT_ID</key>
+	<string>gaple-pro</string>
+	<key>STORAGE_BUCKET</key>
+	<string>gaple-pro.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:531035032309:ios:57ed568a1309be7380d3bc</string>
+</dict>
+</plist>

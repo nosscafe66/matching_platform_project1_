@@ -5,72 +5,139 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 
+import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-// For the testing purposes, you should probably use https://pub.dev/packages/uuid.
-String randomString() {
-  final random = Random.secure();
-  final values = List<int>.generate(16, (i) => random.nextInt(255));
-  return base64UrlEncode(values);
-}
+class ChatPage extends StatefulWidget {
+  ChatPage(this._userName);
 
-// //ここからメイン処理にする
-// class ChatRoomPage extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         backgroundColor: Colors.black,
-//         title: const Text('Gaple'),
-//       ),
-//       // body: Container(
-//     );
-//   }
-// }
-
-class ChatRoom extends StatelessWidget {
-  const ChatRoom({key});
+  final String _userName;
 
   @override
-  Widget build(BuildContext context) => const MaterialApp(
-        home: MyHomePage(),
-      );
+  _ChatPageState createState() => new _ChatPageState();
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({key});
+class _ChatPageState extends State<ChatPage> {
+  final _controller = TextEditingController();
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-
-class _MyHomePageState extends State<MyHomePage> {
-  final List<types.Message> _messages = [];
-  final _user = const types.User(id: '82091008-a484-4a89-ae75-a22bf8d6f3ac');
-
-  @override
-  Widget build(BuildContext context) => Scaffold(
-        body: Chat(
-          messages: _messages,
-          onSendPressed: _handleSendPressed,
-          user: _user,
+  Widget build(BuildContext context) {
+    return new Scaffold(
+        appBar: new AppBar(
+          title: new Text("Chatroom"),
         ),
-      );
+        body: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Column(
+            children: <Widget>[
+              Flexible(
+                //CRUD処理でいう読み取り処理・表示処理に該当する。
+                child: StreamBuilder<QuerySnapshot>(
+                  stream: FirebaseFirestore.instance
+                      .collection("chat_room")
+                      .orderBy("created_at", descending: true)
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) return Container();
+                    return new ListView.builder(
+                      padding: new EdgeInsets.all(8.0),
+                      reverse: true,
+                      itemBuilder: (_, int index) {
+                        
+                        DocumentSnapshot document =
+                        snapshot.data.docs[index];
 
-  void _addMessage(types.Message message) {
-    setState(() {
-      _messages.insert(0, message);
-    });
+                        bool isOwnMessage = false;
+                        if (document['user_name'] == widget._userName) {
+                          isOwnMessage = true;
+                        }
+                        return isOwnMessage
+                            ? _ownMessage(
+                            document['message'], document['user_name'])
+                            : _message(
+                            document['message'], document['user_name']);
+                      },
+                      itemCount: snapshot.data.docs.length,
+                    );
+                  },
+                ),
+              ),
+              new Divider(height: 1.0),
+              Container(
+                margin: EdgeInsets.only(bottom: 20.0, right: 10.0, left: 10.0),
+                child: Row(
+                  children: <Widget>[
+                    new Flexible(
+                      child: new TextField(
+                        controller: _controller,
+                        onSubmitted: _handleSubmit,
+                        decoration:
+                        new InputDecoration.collapsed(hintText: "メッセージの送信"),
+                      ),
+                    ),
+                    new Container(
+                      child: new IconButton(
+                          icon: new Icon(
+                            Icons.send,
+                            color: Colors.blue,
+                          ),
+                          onPressed: () {
+                            _handleSubmit(_controller.text);
+                          }),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ));
   }
 
-  void _handleSendPressed(types.PartialText message) {
-    final textMessage = types.TextMessage(
-      author: _user,
-      createdAt: DateTime.now().millisecondsSinceEpoch,
-      id: randomString(),
-      text: message.text,
+  Widget _ownMessage(String message, String userName) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: <Widget>[
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(height: 10.0,),
+            Text(userName),
+            Text(message),
+          ],
+        ),
+        Icon(Icons.person),
+      ],
     );
+  }
 
-    _addMessage(textMessage);
+  Widget _message(String message, String userName) {
+    return Row(
+      children: <Widget>[
+        Icon(Icons.person),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(height: 10.0,),
+            Text(userName),
+            Text(message),
+          ],
+        )
+      ],
+    );
+  }
+
+  _handleSubmit(String message) {
+    _controller.text = "";
+    var db = FirebaseFirestore.instance;
+    //CRUD処理でいう登録処理に該当する。
+    db.collection("chat_room").add({
+      "user_name": widget._userName,
+      "message": message,
+      "created_at": DateTime.now()
+    }).then((val) {
+      print("success");
+    }).catchError((err) {
+      print(err);
+    });
   }
 }
