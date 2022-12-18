@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:matching_platform_project1/four_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-//登録確認ページ
+import 'package:matching_platform_project1/main_model.dart';
+import 'package:provider/provider.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:matching_platform_project1/signup/signup_page.dart';
+
+//登録確認ページ(子ウィジェットとして扱うこととする。)
 class ThirdPage extends StatelessWidget {
   //会員登録時時に必要な要素一覧
   const ThirdPage(this.userName,this.mailAddress,this.passWord,this.Sex);
@@ -74,14 +79,14 @@ class ThirdPage extends StatelessWidget {
                 //ボタン押した時の処理(登録完了画面 + insert文の実行)
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => FourPage(),
+                  MaterialPageRoute(builder: (context) => SignUPPage(),
                       fullscreenDialog: true),
                 );
                 //insert文を実行(会員登録の情報入力)
                 //会員情報テーブルとユーザー認証テーブル
               },
                   child: const Center(
-                      child: const Text('Regist',
+                      child: const Text('ReturnPage',
                         style: const TextStyle(
                           color: Colors.black,
                           fontSize: 20,

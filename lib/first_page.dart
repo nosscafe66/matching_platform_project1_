@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:matching_platform_project1/Main_Page.dart';
-import 'package:matching_platform_project1/second_page.dart';
 import 'package:matching_platform_project1/user_login.dart';
+import 'package:matching_platform_project1/signup/signup_page.dart';
+
 
 class FirstPage extends StatelessWidget {
   //変数初期化処理
@@ -45,7 +47,7 @@ class FirstPage extends StatelessWidget {
                                     context,
                                     //サインアップ画面
                                     MaterialPageRoute(
-                                      builder: (context) => SecondPage(),
+                                      builder: (context) => SignUPPage(),
                                     ));
                               } else if (h == 1) {
                                 Navigator.push(
@@ -116,8 +118,8 @@ class FirstPage extends StatelessWidget {
                                 child: Center(
                                     child: Text(
                                   Textlist[j],
-                                  style: TextStyle(
-                                    color: Colors.orangeAccent.withBlue(55 * j),
+                                  style: GoogleFonts.courgette(//caveat satisfy courgette
+                                    color: Colors.orangeAccent.withBlue(155 * j),
                                     fontSize: 60,
                                     fontWeight: FontWeight.normal,
                                     letterSpacing: 4.0,

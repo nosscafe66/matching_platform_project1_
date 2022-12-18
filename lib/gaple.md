@@ -1,0 +1,5 @@
+flutter参考サイト
+https://shogogeek.hatenablog.com/archive/category/Flutter%E9%96%A2%E9%80%A3?page=2
+
+pairs仕組み
+https://pc.moppy.jp/matchingapps/news/445#:~:text=%E3%80%8C%E3%81%84%E3%81%84%E3%81%AD%EF%BC%81%E3%80%8D%E3%82%92%E9%80%81%E3%81%A3,%E3%81%A8%E3%83%9E%E3%83%83%E3%83%81%E3%83%B3%E3%82%B0%E6%88%90%E7%AB%8B%E3%81%A8%E3%81%AA%E3%82%8A%E3%81%BE%E3%81%99%E3%80%82&text=%E5%A5%B3%E6%80%A7%E3%81%AE%E5%A0%B4%E5%90%88%E3%81%AF%E3%81%9D%E3%81%AE%E3%81%BE%E3%81%BE,%E3%81%AB%E3%81%AA%E3%82%8B%E5%BF%85%E8%A6%81%E3%81%8C%E3%81%82%E3%82%8A%E3%81%BE%E3%81%99%E3%80%82

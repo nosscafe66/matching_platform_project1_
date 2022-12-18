@@ -42,7 +42,7 @@ class _ExplorePageState extends State<ExplorePage>
       padding: const EdgeInsets.only(bottom: 120),
       child: SizedBox(
         height: size.height,
-        child: TinderSwapCard(
+        child: TinderSwapCard(//swapcard
           totalNum: itemLength,
           maxWidth: MediaQuery.of(context).size.width,
           maxHeight: MediaQuery.of(context).size.height * 0.75,
@@ -65,7 +65,7 @@ class _ExplorePageState extends State<ExplorePage>
                     width: size.width,
                     height: size.height,
                     decoration: BoxDecoration(
-                      image: DecorationImage(
+                      image: DecorationImage(//firestoreから取得する処理に変更する。
                           image: AssetImage(itemsTemp[index]['img']),
                           fit: BoxFit.cover),
                     ),
@@ -222,7 +222,7 @@ class _ExplorePageState extends State<ExplorePage>
               ),
             ),
           ),
-          cardController: controller = CardController(),
+          cardController: controller = CardController(),//カードのスワイプ
           swipeUpdateCallback: (DragUpdateDetails details, Alignment align) {
             /// Get swiping card's alignment
             if (align.x < 0) {
@@ -240,7 +240,7 @@ class _ExplorePageState extends State<ExplorePage>
               });
             }
           },
-        ),
+        ),//swapcard
       ),
     );
   }

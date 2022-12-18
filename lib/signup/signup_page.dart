@@ -1,17 +1,19 @@
-import 'package:flutter/material.dart';
-import 'package:matching_platform_project1/third_page.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:path_provider/path_provider.dart';
-import 'dart:async';
 import 'dart:io';
+import 'dart:async';
+import 'package:path/path.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:matching_platform_project1/alert_file.dart';
-import 'package:matching_platform_project1/main_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:matching_platform_project1/first_page.dart';
+import 'package:matching_platform_project1/Regist_Failed_Page.dart';
+import 'package:matching_platform_project1/signup/signup_page_model.dart';
 
-//SignUpページ(画面のウィジェット部分)
-class SecondPage extends StatelessWidget {
+//SignUpページ(画面のウィジェット部分)--これがおそらく親の役割を持つウィジェットになる。
+//親Widgetで Provider<T>.value() を使い データを渡す
+class SignUPPage extends StatelessWidget {
+  bool isLoaded = false;
   String userName = '';
   String mailAddress = '';
   String passWord = '';
@@ -19,11 +21,14 @@ class SecondPage extends StatelessWidget {
   //セカンドページに値を渡さないとページを作ることができない
   //const SecondPage(this.name);
   //final String name;
+  
+  final data = SignUpModel();
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<SignUpModel>(
-    create: (context) => SignUpModel(),
+    return ChangeNotifierProvider<SignUpModel>.value(
+    //create: (context) => SignUpModel(),
+    value: data,
     child: Consumer<SignUpModel>( 
       builder: (context, model, child) => Scaffold(
       appBar: AppBar(
@@ -116,6 +121,7 @@ class SecondPage extends StatelessWidget {
                 autovalidateMode: AutovalidateMode.onUserInteraction,
               ),
               TextFormField(
+                keyboardType: TextInputType.emailAddress,
                 onChanged: (mailaddress) {
                   //メールアドレスの入力
                   mailAddress = mailaddress;
@@ -125,6 +131,7 @@ class SecondPage extends StatelessWidget {
                 autovalidateMode: AutovalidateMode.onUserInteraction,
               ),
               TextFormField(
+                keyboardType: TextInputType.visiblePassword,
                 onChanged: (password) {
                   //パスワードの入力
                   passWord = password;
@@ -142,12 +149,41 @@ class SecondPage extends StatelessWidget {
                 autovalidateMode: AutovalidateMode.onUserInteraction,
               ),
               OutlinedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     //登録確認画面へ遷移
                     if (userName.isNotEmpty |
                         mailAddress.isNotEmpty |
                         passWord.isNotEmpty |
                         Sex.isNotEmpty) {
+                          try{
+                            //FirebaseAuthのインスタンスを生成
+                            final FirebaseAuth auth = FirebaseAuth.instance;
+
+                            //Fire Auth に新規登録ユーザーの情報を書き込む
+                            final UserCredential userCredential = await auth.createUserWithEmailAndPassword(
+                              email: mailAddress,
+                              password: passWord,
+                            );
+                            final user = userCredential.user;
+                            final email = user.email;
+                            final uid = user.uid;
+                            print(email);
+                            print(uid);
+                            // FireStoreに新規登録ユーザーの情報を書き込む
+                            final doc = FirebaseFirestore.instance.collection("users").doc(uid);
+                            await doc.set({
+                              "uid":uid,
+                              "email": email,
+                              "createAt": Timestamp.now(),
+                            });
+                            await Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(builder: (context) {
+                                  //ユーザー登録に成功した場合には最初のページに戻る。
+                                  return FirstPage();
+                        }),);
+                          } catch(e){
+                            print(e);
+                          }
                       //変数が空以外の時に画面遷移を行う
                       Navigator.push(
                         context,
