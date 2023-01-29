@@ -5,10 +5,10 @@ class Profile{
     //　ドキュメントの持っているフィールドをこのProfileのフィールドに代入
     //username = doc['username'];
     uid = doc['uid'];
-    //userpic = doc['pic'];
+    email = doc['email'];
   }
   // Profileで扱うフィールドを定義しておく。
   //String username;
   String uid;
-  //String pic;
+  String email;
 }

@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:matching_platform_project1/Main_Page.dart';
 import 'package:matching_platform_project1/Regist_Failed_Page.dart';
+import 'package:path/path.dart';
 class UserLoginModel extends ChangeNotifier {
   String userName = '';
   String passWord = '';
   String mailAddress = '';
-  String uid = '';
+  String uid;
+
+  bool isLoading;
 
   void startLoading() {
     isLoading = true;
@@ -18,7 +21,7 @@ class UserLoginModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void login(){
+  Future<void> login() async {
     if(mailAddress.isNotEmpty | passWord.isNotEmpty){
       try{
           //FirebaseAuthのインスタンスを生成

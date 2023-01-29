@@ -43,7 +43,7 @@ class ViewProfileModel extends ChangeNotifier {
   //全てのプロファイル一覧を取得する。
   Future <void> fetchprofiles() async {
     // Firestoreからコレクション'profiles'(QuerySnapshot)を取得してdocsに代入。
-    final docs = await FirebaseFirestore.instance.collection('profiles').get();
+    final docs = await FirebaseFirestore.instance.collection('users').get();
         // getter docs: docs(List<QueryDocumentSnapshot<T>>型)のドキュメント全てをリストにして取り出す。
     // map(): Listの各要素をBookに変換
     // toList(): Map()から返ってきたIterable→Listに変換する。

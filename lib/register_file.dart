@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 
 // 画像を追加
@@ -29,7 +30,7 @@ Future onAddPhoto() async {
     final String path = '${timestamp}_$name';
     final TaskSnapshot task = await FirebaseStorage.instance
         .ref()
-        .child('user/${user.uid}/photos') // フォルダ名
+        .child('users/${user.uid}/photos') // フォルダ名
         .child(path) // ファイル名
         .putFile(file); // 画像ファイル
     // アップロードした画像のURLを取得

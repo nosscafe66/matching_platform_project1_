@@ -46,22 +46,24 @@ class MyPage extends StatelessWidget {
                         width:400,
                         height:50,
                         child:Text(
-                        "LoginUsername:"+model.name ?? '名前なし',
-                        style: TextStyle(
+                        "LoginUsername:${model.name}" ?? '名前なし',
+                        style: const TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                         ),
                       )),Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Container(
+                          SizedBox(
                               width: 400,
                               height: 200,
-                              child: image != null
-                                  ? image
-                                  : Container(
-                                      color: Colors.grey,
-                                     )
+                          child: image ?? Container(
+                                  decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  boxShadow: [
+                                    BoxShadow(color: Colors.blueAccent.shade700)
+                              ]),
+                                  )
                                      ),
                           SizedBox(
                             height: 10,

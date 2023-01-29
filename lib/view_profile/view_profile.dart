@@ -31,6 +31,11 @@ class ViewProfile extends StatelessWidget {
                   return ListTile(
                     //　books[index]でList booksのindex番目の要素が取り出せる。
                     title: Text(profiles[index].uid),
+                    subtitle: Text(profiles[index].uid),
+                    leading:Icon(Icons.account_box_rounded),
+                    onTap: () => {},
+                    onLongPress: () => {},
+                    trailing: Icon(Icons.more_vert),
                   );
                 },
               );
